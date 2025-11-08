@@ -1,15 +1,22 @@
 import express from "express"
 import { ENV } from "./config/env.js";
 import { connectDB } from "./config/db.js";
-
+import cors from  "cors"; 
+import { clerkMiddleware } from "@clerk/express";
+import userRoutes from "./routes/user.route.js";
 
 
 const app = express()
 
+app.use(cors())
 app.use(express.json());
 
 
+app.use(clerkMiddleware());
+
 app.get("/", ( req, res ) => res.send("Hello from server.") )
+app.use("/api/users", userRoutes);
+
 
 const startServer = async () => {
     try {
@@ -18,7 +25,7 @@ const startServer = async () => {
             console.log("Server is up and running on PORT:", ENV.PORT);
         })
     } catch (error) {
-        console.log("Error connecting to DB:", error);
+        console.log("Error connecting to server:", error);
         process.exit(1);
     }
 } 
