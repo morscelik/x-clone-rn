@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import express from "express";
+import { protectRoute } from "../middleware/auth.middleware.js";
+import { createComment, getComments, deleteComment } from "../controllers/comment.controller.js";
 
-export default function commentRoute() {
-  return (
-    <View>
-      <Text>comment.route</Text>
-    </View>
-  )
-}
+const router = express.Router();
+
+// public routes
+router.get("/post/:postId", getComments);
+
+// protected routes
+router.post("/post/:postId", protectRoute, createComment);
+router.delete("/:commentId", protectRoute, deleteComment);
+
+export default router;
