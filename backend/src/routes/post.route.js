@@ -1,10 +1,18 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import express from 'express';
+import { createPost, deletePost, getPost, getPosts, getUserPosts, likePost } from '../controllers/post.controller.js';
+import { protectRoute } from '../middleware/auth.middleware.js';
+import upload from '../middleware/upload.middleware.js';
 
-export default function postRoute() {
-  return (
-    <View>
-      <Text>post.route</Text>
-    </View>
-  )
-}
+const router = express.Router();
+
+//public route
+router.get("/",  getPosts);
+router.get("/:postId",  getPost);
+router.get("/user/:username",  getUserPosts);
+
+//protected route
+router.post("/", protectRoute, upload.single("image")  , createPost  );
+router.post("/:postId/like", protectRoute, likePost  );
+router.delete("/:postId", protectRoute, deletePost  );
+
+export default router;
