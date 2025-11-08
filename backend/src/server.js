@@ -7,6 +7,7 @@ import userRoutes from "../src/routes/user.route.js";
 import postRoutes from "../src/routes/post.route.js";
 import commentRoutes from "../src/routes/comment.route.js";
 import notificationRoutes from "../src/routes/notification.route.js";
+import { arcjetMiddleware } from "./middleware/arcjet.middleware.js";
 
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(express.json());
 
 
 app.use(clerkMiddleware());
+app.use(arcjetMiddleware)
 
 app.get("/", ( req, res ) => res.send("Hello from server.") )
 app.use("/api/users", userRoutes);
