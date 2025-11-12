@@ -14,8 +14,6 @@ const app = express()
 
 app.use(cors())
 app.use(express.json());
-
-
 app.use(clerkMiddleware());
 app.use(arcjetMiddleware)
 
@@ -25,6 +23,10 @@ app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/notifications", notificationRoutes);
 
+app.use((req, res, next) => {
+    console.log("HEADERS:", req.headers); // Authorization header var mı?
+    next();
+});
 
 //error handling middleware
 app.use((err, req, res )=> {

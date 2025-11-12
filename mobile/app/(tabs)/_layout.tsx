@@ -29,6 +29,7 @@ const TabsLayout = () => {
         name="index"
         options={{
           title: "",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} />,
         }}
       />
@@ -36,7 +37,7 @@ const TabsLayout = () => {
         name="search"
         options={{
           title: "",
-
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <Feather name="search" size={size} color={color} />,
         }}
       />
@@ -44,7 +45,7 @@ const TabsLayout = () => {
         name="notifications"
         options={{
           title: "",
-
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <Feather name="bell" size={size} color={color} />,
         }}
       />
@@ -52,7 +53,7 @@ const TabsLayout = () => {
         name="messages"
         options={{
           title: "",
-
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <Feather name="mail" size={size} color={color} />,
         }}
       />
@@ -60,6 +61,7 @@ const TabsLayout = () => {
         name="profile"
         options={{
           title: "",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <Feather name="user" size={size} color={color} />,
         }}
       />
